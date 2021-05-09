@@ -1,4 +1,4 @@
-package com.envator.ecom;
+package com.vaguenone.biotogo;
 
 import io.flutter.embedding.android.FlutterActivity;
 
