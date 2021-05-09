@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "608171530780",
+    "project_id": "biotogo-e2ca2",
+    "storage_bucket": "biotogo-e2ca2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608171530780:android:94cb17432bf804d6215dd9",
+        "android_client_info": {
+          "package_name": "com.vaguenone.biotogo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608171530780-94n407nj9jn9gh5h683p14pcfdvb8tb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB43huR_uzmdvgeuMA_9pGE31D1gvyx5LQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608171530780-94n407nj9jn9gh5h683p14pcfdvb8tb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
