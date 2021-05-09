@@ -5,30 +5,48 @@ import 'package:ecom/utils/languages_local.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
-class IntroScreen extends StatefulWidget  {
-
+class IntroScreen extends StatefulWidget {
   @override
   _IntroScreenState createState() => new _IntroScreenState();
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-
-  static final String path = "lib/src/pages/onboarding/smart_wallet_onboarding.dart";
+  static final String path =
+      "lib/src/pages/onboarding/smart_wallet_onboarding.dart";
   final slides = [
-     Slide(
+    Slide(
       title: APPNAME,
-      styleTitle:
-      TextStyle(color: themeTextColor, fontSize: 25.0, fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
-      description: "WooFlux Store is your one-stop online shopping marketplace World wide bringing a reliable, hassle-free and convenient shopping experience to your fingertips. ",
-      styleDescription: TextStyle(color: themeTextColor, fontSize: 15.0, fontStyle: FontStyle.italic, fontFamily: 'Raleway'),
+      styleTitle: TextStyle(
+          color: themeTextColor,
+          fontSize: 25.0,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'RobotoMono'),
+      description: """
+        Bienvenue sur Bio TOGO Market! le carrefour des produits locaux, Bio & Naturel 100% TOGOLAIS. Commandez vite et soyez livrer dans les meilleurs délais.
+        """,
+      styleDescription: TextStyle(
+          color: themeTextColor,
+          fontSize: 15.0,
+          fontStyle: FontStyle.italic,
+          fontFamily: 'Raleway'),
       pathImage: "assets/splashone.png",
       backgroundColor: themeBG,
     ),
     Slide(
       title: APPNAME,
-      styleTitle: TextStyle(color: themeTextColor, fontSize: 25.0, fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
-      description: "Founded on the precipice of trust and peace of mind, WooFlux Store aims to provide an unfailing and absolutely trouble-free shopping experience to the people of World.",
-      styleDescription: TextStyle(color: themeTextColor, fontSize: 15.0, fontStyle: FontStyle.italic, fontFamily: 'Raleway'),
+      styleTitle: TextStyle(
+          color: themeTextColor,
+          fontSize: 25.0,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'RobotoMono'),
+      description:
+          """Ensemble consommons local, consommons Bio sur www.biotogo.tg
+Biotogo, le carrefour des produits locaux. © 2021 Bio TOGO. BeWell Concept""",
+      styleDescription: TextStyle(
+          color: themeTextColor,
+          fontSize: 15.0,
+          fontStyle: FontStyle.italic,
+          fontFamily: 'Raleway'),
       pathImage: "assets/splashtwo.png",
       backgroundColor: themeBG,
     ),
@@ -62,8 +80,6 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
-
-
   void onDonePress() {
     Navigator.pushReplacementNamed(context, "/home");
   }
@@ -71,5 +87,4 @@ class _IntroScreenState extends State<IntroScreen> {
   void onSkipPress() {
     Navigator.pushReplacementNamed(context, "/home");
   }
-
 }
