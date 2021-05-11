@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ecom/utils/prefrences.dart';
 
-
 Color transparent = Color(0x00000000);
 
 //main
-Color get themePrimary => Color(0xff54b0f3);
-Color get themeBG => isDarkTheme()?Color(0xff40465d): Color(0xFFeef4f8);
+Color get themePrimary => Color(0xff04a104);
+Color get themeBG => isDarkTheme() ? Color(0xff40465d) : Color(0xFFeef4f8);
 //appbar
-Color get themeAppBar =>  isDarkTheme()?Color(0xff40465d): Color(0xFFeef4f8);
-Color get themeAppBarItems => isDarkTheme()?Color(0xFFeef4f8): Color(0xff40465d);
+Color get themeAppBar => isDarkTheme() ? Color(0xff40465d) : Color(0xFFeef4f8);
+Color get themeAppBarItems =>
+    isDarkTheme() ? Color(0xFFeef4f8) : Color(0xff40465d);
 //text
-Color get themeTextColor => isDarkTheme()?Color(0xFFeef4f8): Color(0xff40465d);
-Color get themeTextHighLightColor => Color(0xff54b0f3);
+Color get themeTextColor =>
+    isDarkTheme() ? Color(0xFFeef4f8) : Color(0xff40465d);
+Color get themeTextHighLightColor => Color(0xff04a104);
+Color get splash => Color(0xfff01616);
 //nav
-Color get themeNavbarSelectedItems =>  isDarkTheme()?Color(0xff40465d): Color(0xFFeef4f8);
-Color get themeNavbarUnSelectedItems =>  isDarkTheme()?Color(0xFFeef4f8): Color(0xff40465d);
-
-
-
-
+Color get themeNavbarSelectedItems =>
+    isDarkTheme() ? Color(0xff40465d) : Color(0xFFeef4f8);
+Color get themeNavbarUnSelectedItems =>
+    isDarkTheme() ? Color(0xFFeef4f8) : Color(0xff40465d);

@@ -23,7 +23,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 
-
 class LoginWidget extends StatefulWidget {
   @override
   _MyAppState createState() => new _MyAppState();
@@ -34,22 +33,18 @@ class _MyAppState extends State<LoginWidget> {
   bool isFreeShipment;
   double amount;
   String redirectTo;
-  bool isLoading=false;
+  bool isLoading = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    Map map = ModalRoute
-        .of(context)
-        .settings
-        .arguments as Map;
+    Map map = ModalRoute.of(context).settings.arguments as Map;
     amount = map['_amount'];
-    isFreeShipment = map['_freeShipment']??false;
+    isFreeShipment = map['_freeShipment'] ?? false;
     redirectTo = map['_nextToGo'];
 
     return Scaffold(
@@ -70,13 +65,14 @@ class _MyAppState extends State<LoginWidget> {
                         },
                         child: Container(
                           padding: EdgeInsets.all(5),
-                          child: Icon(Icons.arrow_back,
+                          child: Icon(
+                            Icons.arrow_back,
                             color: themeAppBarItems,
-                            size: 25,),
-                        )
-                    ),
+                            size: 25,
+                          ),
+                        )),
                     Text(
-                      "Login "+APPNAME,
+                      "Connexion " + APPNAME,
                       style: TextStyle(
                         color: themeAppBarItems,
                         fontSize: 20.0,
@@ -85,11 +81,9 @@ class _MyAppState extends State<LoginWidget> {
                       ),
                     ),
                     Container(),
-
                   ],
                 ),
-              )
-          ),
+              )),
           Expanded(
               flex: 2,
               child: Center(
@@ -98,8 +92,7 @@ class _MyAppState extends State<LoginWidget> {
                   width: 150,
                   height: 150,
                 ),
-              )
-          ),
+              )),
           Expanded(
             flex: 3,
             child: Column(
@@ -116,10 +109,7 @@ class _MyAppState extends State<LoginWidget> {
                         borderRadius: BorderRadius.circular(5),
                         color: themeTextColor,
                       ),
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.8,
+                      width: MediaQuery.of(context).size.width * 0.8,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -129,7 +119,7 @@ class _MyAppState extends State<LoginWidget> {
                             height: 30,
                           ),
                           Text(
-                            'Sign in with Google',
+                            'Se connecter avec Google',
                             style: TextStyle(
                               fontFamily: "Normal",
                               fontWeight: FontWeight.w600,
@@ -137,10 +127,8 @@ class _MyAppState extends State<LoginWidget> {
                               color: themeBG,
                             ),
                           ),
-
                         ],
-                      )
-                  ),
+                      )),
                 ),
                 Divider(),
                 GestureDetector(
@@ -154,10 +142,7 @@ class _MyAppState extends State<LoginWidget> {
                         borderRadius: BorderRadius.circular(5),
                         color: themeTextColor,
                       ),
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.8,
+                      width: MediaQuery.of(context).size.width * 0.8,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -167,7 +152,7 @@ class _MyAppState extends State<LoginWidget> {
                             height: 30,
                           ),
                           Text(
-                            'Sign in with FaceBook',
+                            'Se connecter avec FB',
                             style: TextStyle(
                               fontFamily: "Normal",
                               fontWeight: FontWeight.w600,
@@ -175,20 +160,22 @@ class _MyAppState extends State<LoginWidget> {
                               color: themeBG,
                             ),
                           ),
-
                         ],
-                      )
-                  ),
+                      )),
                 ),
                 Divider(),
-                Container(width: MediaQuery.of(context).size.width * 0.8,
-                  child: Platform.isAndroid ? Container() :
-                  SignInWithAppleButton(
-                    onPressed: (){
-                      appleSignIn();
-                    },
-                    style: isDarkTheme()?SignInWithAppleButtonStyle.white:SignInWithAppleButtonStyle.black,
-                  ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Platform.isAndroid
+                      ? Container()
+                      : SignInWithAppleButton(
+                          onPressed: () {
+                            appleSignIn();
+                          },
+                          style: isDarkTheme()
+                              ? SignInWithAppleButtonStyle.white
+                              : SignInWithAppleButtonStyle.black,
+                        ),
                 )
               ],
             ),
@@ -199,7 +186,7 @@ class _MyAppState extends State<LoginWidget> {
               child: Container(
                 padding: EdgeInsets.only(right: 20, left: 20),
                 child: Text(
-                  "Login Required .Signup with fb or google for continue to payment process.",
+                  "Connexion requise .Inscrivez-vous avec facebook ou google pour continuer le processus de paiement.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Normal",
@@ -208,14 +195,17 @@ class _MyAppState extends State<LoginWidget> {
                     color: themeTextColor,
                   ),
                 ),
-              )
-          ),
-          isLoading?JumpingDotsProgressIndicator(fontSize: 30.0,):Container(),
+              )),
+          isLoading
+              ? JumpingDotsProgressIndicator(
+                  fontSize: 30.0,
+                )
+              : Container(),
           Expanded(
               flex: 1,
               child: Center(
                 child: Text(
-                  "@Copyright :WooFlux Store.",
+                  "@Copyright :bewell concept",
                   style: TextStyle(
                     fontFamily: "Normal",
                     fontWeight: FontWeight.w600,
@@ -223,41 +213,48 @@ class _MyAppState extends State<LoginWidget> {
                     color: themeTextColor,
                   ),
                 ),
-              )
-          ),
+              )),
         ],
       ),
     );
   }
 
-  addNewUserToWooComm(String displayName, String email, String phoneNumber) async {
-
-    CreateCustomer customer=getCustomerDetailsPref();
-    customer.billing.first_name=customer.first_name=displayName.split(" ")[0];
-    customer.billing.last_name=customer.last_name=displayName.split(" ").length>1?displayName.split(" ")[1]:"";
-    customer.billing.email=customer.email=customer.billing.email=email;
-    customer.billing.phone=phoneNumber;
-    customer.username=displayName;
+  addNewUserToWooComm(
+      String displayName, String email, String phoneNumber) async {
+    CreateCustomer customer = getCustomerDetailsPref();
+    customer.billing.first_name =
+        customer.first_name = displayName.split(" ")[0];
+    customer.billing.last_name = customer.last_name =
+        displayName.split(" ").length > 1 ? displayName.split(" ")[1] : "";
+    customer.billing.email = customer.email = customer.billing.email = email;
+    customer.billing.phone = phoneNumber;
+    customer.username = displayName;
 
     setCustomerDetailsPref(customer);
-    setState(() {isLoading=true;});
+    setState(() {
+      isLoading = true;
+    });
     moveToNext();
   }
 
   Future<void> addToWoocommerce(CreateCustomer customer) async {
-    int userid = await WooHttpRequest().getUserWithId( customer);
-    if(userid!=0) {
-      UpdateCustomer updateCustomer=UpdateCustomer.fromJson( customer.toJson());
-      CreateCustomerResponce createCustomerResponce=await WooHttpRequest().updateNewUser(userid, updateCustomer);
-      if(createCustomerResponce!=null){
+    int userid = await WooHttpRequest().getUserWithId(customer);
+    if (userid != 0) {
+      UpdateCustomer updateCustomer =
+          UpdateCustomer.fromJson(customer.toJson());
+      CreateCustomerResponce createCustomerResponce =
+          await WooHttpRequest().updateNewUser(userid, updateCustomer);
+      if (createCustomerResponce != null) {
         prefs.setInt(USERID, createCustomerResponce.id);
         moveToNext();
       }
       print(createCustomerResponce);
-    }else{
-      CreateCustomer createCustomer=CreateCustomer.fromJson( customer.toJson());
-      CreateCustomerResponce createCustomerResponce=await WooHttpRequest().addCustomer( createCustomer);
-      if(createCustomerResponce!=null){
+    } else {
+      CreateCustomer createCustomer =
+          CreateCustomer.fromJson(customer.toJson());
+      CreateCustomerResponce createCustomerResponce =
+          await WooHttpRequest().addCustomer(createCustomer);
+      if (createCustomerResponce != null) {
         prefs.setInt(USERID, createCustomerResponce.id);
         moveToNext();
       }
@@ -265,23 +262,26 @@ class _MyAppState extends State<LoginWidget> {
   }
 
   Future<void> moveToNext() async {
-    orders =await WooHttpRequest().getOrders();
+    orders = await WooHttpRequest().getOrders();
     prefs.setBool(ISLOGIN, true);
-    Navigator.pushReplacementNamed(context, redirectTo, arguments: {'_amount': amount,'_freeShipment': isFreeShipment});
+    Navigator.pushReplacementNamed(context, redirectTo,
+        arguments: {'_amount': amount, '_freeShipment': isFreeShipment});
   }
   //-------------------Incase If Developer wants serpate implemenation standalone login independent to firebase -----------//
-
 
   Future<UserCredential> initiateFacebookLogin() async {
     // Trigger the sign-in flow
     final AccessToken result = await FacebookAuth.instance.login();
 
     // Create a credential from the access token
-    final FacebookAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(result.token);
+    final FacebookAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(result.token);
 
     // Once signed in, return the UserCredential
-    UserCredential userCredential= await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-    addNewUserToWooComm(userCredential.user.displayName, userCredential.user.email, userCredential.user.phoneNumber);
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
+    addNewUserToWooComm(userCredential.user.displayName,
+        userCredential.user.email, userCredential.user.phoneNumber);
 
     return userCredential;
   }
@@ -327,7 +327,8 @@ class _MyAppState extends State<LoginWidget> {
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
 
     // Create a new credential
     final GoogleAuthCredential credential = GoogleAuthProvider.credential(
@@ -336,12 +337,14 @@ class _MyAppState extends State<LoginWidget> {
     );
 
     // Once signed in, return the UserCredential
-    UserCredential userCredential= await FirebaseAuth.instance.signInWithCredential(credential);
-    addNewUserToWooComm(userCredential.user.displayName, userCredential.user.email, userCredential.user.phoneNumber);
-
-    return  userCredential;
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    addNewUserToWooComm(userCredential.user.displayName,
+        userCredential.user.email, userCredential.user.phoneNumber);
+    return userCredential;
   }
-  Future<void>  appleSignIn()  async {
+
+  Future<void> appleSignIn() async {
     final credential = await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
@@ -349,8 +352,7 @@ class _MyAppState extends State<LoginWidget> {
       ],
       webAuthenticationOptions: WebAuthenticationOptions(
         // TODO: Set the `clientId` and `redirectUri` arguments to the values you entered in the Apple Developer portal during the setup
-        clientId:
-        'com.envator.ecom',
+        clientId: 'com.envator.ecom',
         redirectUri: Uri.parse(
           'https://flutter-sign-in-with-apple-example.glitch.me/callbacks/sign_in_with_apple',
         ),

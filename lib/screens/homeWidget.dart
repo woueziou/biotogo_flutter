@@ -21,12 +21,12 @@ import 'package:ecom/utils/languages_local.dart';
 import 'package:ecom/utils/prefrences.dart';
 import 'package:package_info/package_info.dart';
 
-class HomeScreen extends StatefulWidget  {
+class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
-class _HomeScreenState extends State<HomeScreen>   {
 
+class _HomeScreenState extends State<HomeScreen> {
   List cartList;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool enabled = false; // tracks if drawer should be opened or not
@@ -53,29 +53,25 @@ class _HomeScreenState extends State<HomeScreen>   {
 //        });
 //      }
 //    });
-
   }
+
   @override
   Widget build(BuildContext context) {
-
-
-    cartList=getCartProductsPref();
-    return DefaultTabController(  // Added
-      length: TabBarCount,  // Added
-      initialIndex: 0, //Added
-      child:  Scaffold(
-        key: _scaffoldKey,
-        // assign key to Scaffold
-        drawer: drawerWidget(),
-        backgroundColor: themeBG,
-        bottomNavigationBar: navTabItem(),
-        body: SafeArea(
-          child:body(),
-        )
-      )
-    );
+    cartList = getCartProductsPref();
+    return DefaultTabController(
+        // Added
+        length: TabBarCount, // Added
+        initialIndex: 0, //Added
+        child: Scaffold(
+            key: _scaffoldKey,
+            // assign key to Scaffold
+            drawer: drawerWidget(),
+            backgroundColor: themeBG,
+            bottomNavigationBar: navTabItem(),
+            body: SafeArea(
+              child: body(),
+            )));
   }
-
 
   Widget body() {
     return Container(
@@ -94,19 +90,18 @@ class _HomeScreenState extends State<HomeScreen>   {
                       _scaffoldKey.currentState.openDrawer();
                     }, Icons.menu),
                     Text(
-                      APPNAME+" Store",
+                      APPNAME + " Market",
                       style: TextStyle(
                         color: themeAppBarItems,
-                          fontSize: 20.0,
-                          fontFamily: "Header",
-                          fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        fontFamily: "Header",
+                        fontWeight: FontWeight.bold,
                       ),
-                    ), Container(),
-
+                    ),
+                    Container(),
                   ],
                 ),
-              )
-          ),
+              )),
           Expanded(
             flex: 10,
             child: TabBarView(
@@ -126,17 +121,16 @@ class _HomeScreenState extends State<HomeScreen>   {
   }
 
   drawerWidget() {
-
     return Drawer(
         child: StreamBuilder(
-          stream: homeBloc.getProductCategoryStreamController.stream,
-          initialData: categories,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            return snapshot.data != null ? Container(
+      stream: homeBloc.getProductCategoryStreamController.stream,
+      initialData: categories,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return snapshot.data != null
+            ? Container(
                 color: themeBG,
                 child: ListView(
                   children: [
-
                     Container(
                         alignment: Alignment.center,
                         height: MediaQuery.of(context).size.height * 0.2,
@@ -145,8 +139,8 @@ class _HomeScreenState extends State<HomeScreen>   {
                           children: [
                             Container(
                               padding: EdgeInsets.all(20),
-                              child:  Text(
-                                APPNAME+" Store",
+                              child: Text(
+                                APPNAME + " Market",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: "Header",
@@ -162,86 +156,83 @@ class _HomeScreenState extends State<HomeScreen>   {
                               height: 50,
                             ),
                           ],
-                        )
-                    ),
+                        )),
                     GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, "/home");
-                        },
-                        child: Container(
-                          color: themeBG,
-                          padding: EdgeInsets.all(20),
-                          child: Text(
-                            LocalLanguageString().home,
-                            style: TextStyle(
-                              fontFamily: "Header",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: themeTextColor,
-                            ),
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, "/home");
+                      },
+                      child: Container(
+                        color: themeBG,
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          LocalLanguageString().home,
+                          style: TextStyle(
+                            fontFamily: "Header",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: themeTextColor,
                           ),
                         ),
+                      ),
                     ),
-
                     Container(
-                        child:Container(
-                          color: themeBG,
-                          padding: EdgeInsets.only(top: 20.0,
-                              left: 6.0,
-                              right: 6.0,
-                              bottom: 6.0),
-                          child: ExpansionTile(
-                            initiallyExpanded: true,
-                            title: Text(
-                              LocalLanguageString().bycategory,
-                              style: TextStyle(
-                                fontFamily: "Header",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: themeTextColor,
-                              ),
-                            ),
-                            children: []
-                              ..add(
-                                  Divider(height: 1,)
-                              )
-                              ..addAll(
-                                List.generate(categories.length, (index) {
-                                  return getListItem(
-                                      categories[index].image != null
-                                          ? categories[index].image.src
-                                          : "",
-                                      categories[index].name,
-                                      "",
-                                      categories[index].description,
-                                      Icons.arrow_forward_ios,
-                                          () {
-                                            List<GetAllProducts> _subProduct=List();
-                                            products.forEach((element) {
-                                              if(element.categories.contains(categories[index].name.toString()))
-                                              {
-                                                _subProduct.add(element);
-                                              }
-                                            });
-                                            Navigator.pushNamed(context, '/subproduct', arguments: {'_subProducts': _subProduct, '_title': categories[index].name});
-
-                                      }
-                                  );
-                                }
-                                ),
-                              ),
+                        child: Container(
+                      color: themeBG,
+                      padding: EdgeInsets.only(
+                          top: 20.0, left: 6.0, right: 6.0, bottom: 6.0),
+                      child: ExpansionTile(
+                        initiallyExpanded: true,
+                        title: Text(
+                          LocalLanguageString().bycategory,
+                          style: TextStyle(
+                            fontFamily: "Header",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: themeTextColor,
                           ),
-                        )
-                    )
+                        ),
+                        children: []
+                          ..add(Divider(
+                            height: 1,
+                          ))
+                          ..addAll(
+                            List.generate(categories.length, (index) {
+                              return getListItem(
+                                  categories[index].image != null
+                                      ? categories[index].image.src
+                                      : "",
+                                  categories[index].name,
+                                  "",
+                                  categories[index].description,
+                                  Icons.arrow_forward_ios, () {
+                                List<GetAllProducts> _subProduct = List();
+                                products.forEach((element) {
+                                  if (element.categories.contains(
+                                      categories[index].name.toString())) {
+                                    _subProduct.add(element);
+                                  }
+                                });
+                                Navigator.pushNamed(context, '/subproduct',
+                                    arguments: {
+                                      '_subProducts': _subProduct,
+                                      '_title': categories[index].name
+                                    });
+                              });
+                            }),
+                          ),
+                      ),
+                    ))
                   ],
-                )
-            ) : Container(color: themeBG,);
-          },
-        )
-    );
+                ))
+            : Container(
+                color: themeBG,
+              );
+      },
+    ));
   }
-  Widget getListItem(String categoryUrl,String title,String extendedTitle,String description,IconData trailing,Function callback){
 
+  Widget getListItem(String categoryUrl, String title, String extendedTitle,
+      String description, IconData trailing, Function callback) {
     return ListTile(
       onTap: callback,
       title: Row(
@@ -275,5 +266,4 @@ class _HomeScreenState extends State<HomeScreen>   {
       ),
     );
   }
-
 }

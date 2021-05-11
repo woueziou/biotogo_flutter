@@ -100,7 +100,7 @@ class SplashScreenState extends State<SplashWidget>
                       Text(
                         APPNAME,
                         style: TextStyle(
-                            color: themeTextHighLightColor,
+                            color: themePrimary,
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold,
                             fontFamily: "Header"),
@@ -113,7 +113,7 @@ class SplashScreenState extends State<SplashWidget>
                         },
                         text: ["Market", "Market"],
                         textStyle: TextStyle(
-                            color: themeTextHighLightColor,
+                            color: splash,
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold,
                             fontFamily: "Header"),

@@ -56,7 +56,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   flexibleSpace: FlexibleSpaceBar(
                       centerTitle: true,
                       title: Text(
-                        LocalLanguageString().setting,
+                        "",
                         style: TextStyle(
                           fontFamily: "Header",
                           fontWeight: FontWeight.w600,
@@ -100,7 +100,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         getListItem(
                             Icons.supervised_user_circle,
                             getCustomerDetailsPref().username == ""
-                                ? "Name"
+                                ? "Nom"
                                 : getCustomerDetailsPref().username,
                             "",
                             "",
@@ -439,9 +439,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     'Dark',
                     style: TextStyle(
                         fontFamily: "Header",
-                        color: isDarkTheme()
-                            ? themeTextHighLightColor
-                            : themeTextColor,
+                        color: isDarkTheme() ? themeTextColor : themeTextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.w800),
                   ),

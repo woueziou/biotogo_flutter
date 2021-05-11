@@ -20,6 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //drawer UI Update ,set all strings in app for multilanguage .
 SharedPreferences prefs;
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   // SharedPreferences.setMockInitialValues({});
 
   return runApp(MaterialApp(
@@ -41,5 +42,4 @@ void main() {
     },
     debugShowCheckedModeBanner: false,
   ));
-
 }

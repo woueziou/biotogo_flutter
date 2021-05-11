@@ -2,13 +2,17 @@
 final int TabBarCount = 4;
 final int TabBarCheckOutCount = 4;
 
-const String APPNAME = "WooFlux";
+const String APPNAME = "Biotogo";
 
 // ignore: non_constant_identifier_names
-final String WP_JSON_WC = "https://applipie.com/wp-json/wc/v3/";
-final String WC_API = "https://applipie.com/wc-api/v3/";
-final String WOOCOMM_AUTH_USER = "ck_35bc42954c0bc28e84a4eb499d70afa580452028";
-final String WOOCOMM_AUTH_PASS = "cs_89449fe4b2b5c7f9f456793493584e10e552cb27";
+final String WP_JSON_WC = "https://bio-togo.com/wp-json/wc/v3/";
+// final String WP_JSON_WC = "https://applipie.com/wp-json/wc/v3/";
+final String WC_API = "https://bio-togo.com/wc-api/v3/";
+// final String WC_API = "https://applipie.com/wc-api/v3/";
+final String WOOCOMM_AUTH_USER = "ck_0c62bcc85c231b09e5049f3afe483e331be4591a";
+// final String WOOCOMM_AUTH_USER = "ck_35bc42954c0bc28e84a4eb499d70afa580452028";
+final String WOOCOMM_AUTH_PASS = "cs_e1b94e75d59e7913865932e4d9b5f82b77351a5e";
+// final String WOOCOMM_AUTH_PASS = "cs_89449fe4b2b5c7f9f456793493584e10e552cb27";
 final String HEROKUTOKEN_SERVER = "https://frozen-shelf-98661.herokuapp.com/";
 
 final String PAYPAL_SERVER = "https://api.sandbox.paypal.com/v1/";
