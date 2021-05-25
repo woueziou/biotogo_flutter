@@ -32,10 +32,10 @@ class _CartScreenState extends State<CartScreen> {
   CouponSelection couponSelection = CouponSelection.TextField;
   TextEditingController couponController = TextEditingController();
   GetAllCoupon _coupon = null;
-  double totalCost = 0;
+  int totalCost = 0;
   String itemPriceText;
   String itemSubtotalText;
-  double price = 0.0;
+  int price = 0;
 
   @override
   void initState() {
@@ -49,7 +49,7 @@ class _CartScreenState extends State<CartScreen> {
       widget.showAppBar = map['_showAppBar'];
 
     cartList = getCartProductsPref();
-    totalCost = 0.0;
+    totalCost = 0;
 
     return Scaffold(backgroundColor: themeBG, body: body());
   }
@@ -154,9 +154,9 @@ class _CartScreenState extends State<CartScreen> {
               : null
           : null;
     if (variant != null)
-      price = double.parse(variant.price);
+      price = int.parse(variant.price);
     else
-      price = double.parse(getallproduct.price);
+      price = int.parse(getallproduct.price);
 
     itemPriceText = LocalLanguageString().price +
         " :" +
@@ -178,7 +178,7 @@ class _CartScreenState extends State<CartScreen> {
         print("");
         if (couponAppicableOnCateogries || couponAppicableOnProducts) {
           if (_coupon.discount_type == "fixed_product")
-            price = (price - double.parse(_coupon.amount)) <= 0
+            price = (price - int.parse(_coupon.amount)) <= 0
                 ? 0
                 : (price - double.parse(_coupon.amount));
 
@@ -428,7 +428,7 @@ class _CartScreenState extends State<CartScreen> {
                       builder:
                           (BuildContext context, AsyncSnapshot<String> text) {
                         return Text(
-                          text.data,
+                          "${text.data} FCFA",
                           style: TextStyle(
                             color: themeTextColor,
                             fontFamily: "Normal",
@@ -460,7 +460,7 @@ class _CartScreenState extends State<CartScreen> {
                     });
                 });
               } else
-                ToastUtils.showCustomToast(context, "Cart must not be empty");
+                ToastUtils.showCustomToast(context, "Votre panier est vide");
             },
             child: Center(
               child: Padding(

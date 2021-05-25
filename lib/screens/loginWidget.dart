@@ -1,27 +1,23 @@
-import 'dart:convert';
 import 'dart:io';
 
-//import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 // import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:ecom/main.dart';
-import 'package:ecom/models/request/customerCreateModel.dart';
 import 'package:ecom/models/request/cupdateCustomerUpdateModel.dart';
+import 'package:ecom/models/request/customerCreateModel.dart';
 import 'package:ecom/models/responce/createCustomerResponceModel.dart';
 import 'package:ecom/screens/splashWidget.dart';
 import 'package:ecom/utils/appTheme.dart';
 import 'package:ecom/utils/consts.dart';
 import 'package:ecom/utils/prefrences.dart';
 import 'package:ecom/woohttprequest.dart';
-import 'package:http/http.dart' as http;
+//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -325,23 +321,44 @@ class _MyAppState extends State<LoginWidget> {
   Future<UserCredential> initiateGoogleLogin() async {
     // Trigger the authentication flow
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+    if (googleUser != null) {
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+      // Create a new credential
+      final GoogleAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-    // Create a new credential
-    final GoogleAuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+      // Once signed in, return the UserCredential
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      addNewUserToWooComm(userCredential.user.displayName,
+          userCredential.user.email, userCredential.user.phoneNumber);
 
-    // Once signed in, return the UserCredential
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-    addNewUserToWooComm(userCredential.user.displayName,
-        userCredential.user.email, userCredential.user.phoneNumber);
-    return userCredential;
+      return userCredential;
+    }
+    // // Trigger the authentication flow
+    // final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+    // // Obtain the auth details from the request
+    // final GoogleSignInAuthentication googleAuth =
+    //     await googleUser.authentication;
+
+    // // Create a new credential
+    // final GoogleAuthCredential credential = GoogleAuthProvider.credential(
+    //   accessToken: googleAuth.accessToken,
+    //   idToken: googleAuth.idToken,
+    // );
+
+    // // Once signed in, return the UserCredential
+    // UserCredential userCredential =
+    //     await FirebaseAuth.instance.signInWithCredential(credential);
+    // addNewUserToWooComm(userCredential.user.displayName,
+    //     userCredential.user.email, userCredential.user.phoneNumber);
+    // return userCredential;
   }
 
   Future<void> appleSignIn() async {

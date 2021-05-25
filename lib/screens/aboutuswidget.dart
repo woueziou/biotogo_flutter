@@ -7,23 +7,16 @@ import 'package:ecom/utils/languages_local.dart';
 class AboutusScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: themeBG,
-      body: body(context)
-    );
+    return Scaffold(backgroundColor: themeBG, body: body(context));
   }
-  Widget body(BuildContext context)
-  {
+
+  Widget body(BuildContext context) {
     return Container(
       child: Flex(
         direction: Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Expanded(
-              flex: 1,
-              child: Container(
-              )
-          ),
+          Expanded(flex: 1, child: Container()),
           Expanded(
               flex: 1,
               child: Container(
@@ -32,45 +25,42 @@ class AboutusScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.of(context).pop();
                         },
                         child: Container(
                           height: 40,
                           width: 40,
-
-                          child: Icon(Icons.arrow_back,
+                          child: Icon(
+                            Icons.arrow_back,
                             color: themeAppBarItems,
-                            size: 25,),
-                        )
-                    ),
+                            size: 25,
+                          ),
+                        )),
                     Text(
                       LocalLanguageString().aboutus,
-                      style: TextStyle(color: themeAppBarItems,
+                      style: TextStyle(
+                        color: themeAppBarItems,
                         fontSize: 20.0,
                         fontFamily: "Header",
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Container(),
-
                   ],
                 ),
-              )
-          ),
+              )),
           Expanded(
             flex: 13,
             child: aboutUsbody(context),
           )
-
         ],
       ),
     );
   }
 
-  Widget aboutUsbody(BuildContext context){
+  Widget aboutUsbody(BuildContext context) {
     return Container(
-
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -84,7 +74,7 @@ class AboutusScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 8),
                   child: Container(
-                    height:  150,
+                    height: 150,
                     child: Image.asset(
                       // Replace with your landing page logo here.
                       "assets/logo.png",
@@ -97,13 +87,12 @@ class AboutusScreen extends StatelessWidget {
                   padding: EdgeInsets.only(top: 8),
                   child: SelectableText(
                     // Replace with your landing page website title.
-                    "Flutter Applipie",
+                    "Bio Togo".toUpperCase(),
                     style: TextStyle(
                         fontFamily: "Normal",
                         color: themeTextColor,
                         fontSize: 20,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
                 // Landing page description.
@@ -118,20 +107,18 @@ class AboutusScreen extends StatelessWidget {
                         fontFamily: "Normal",
                         color: themeTextColor,
                         fontSize: 12,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 8),
                   child: SelectableText(
-                    "#flutter #flutterdev ",
+                    "",
                     style: TextStyle(
                         fontFamily: "Normal",
                         color: themeTextColor,
                         fontSize: 12,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
                 Container(
@@ -142,20 +129,19 @@ class AboutusScreen extends StatelessWidget {
                         fontFamily: "Normal",
                         color: themeTextColor,
                         fontSize: 12,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 32),
                   child: Text(
-                    "--@--.com",
+                    " +22892361111\n contact@biotogo.tg",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: "Normal",
                         color: themeTextColor,
                         fontSize: 12,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
 
@@ -165,16 +151,14 @@ class AboutusScreen extends StatelessWidget {
                     children: <Widget>[
                       Container(
                         child: Text(
-                          "Supported by Applipie",
+                          "Copyright By Bewell_Corporation",
                           style: TextStyle(
                               fontFamily: "Normal",
                               color: themeTextColor,
                               fontSize: 12,
-                              fontWeight: FontWeight.w700
-                          ),
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -185,5 +169,4 @@ class AboutusScreen extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -48,6 +48,16 @@ final String DARKTHEME = "darkTheme";
 //-------------------------MULTI LANGUAGE SUPPORT----------------------//
 
 const String PRICE = "Price";
+const String CHECKOUTADDRESS = "ADDRESS";
+const String HISTORYORDERANY = "any";
+const String HISTORYORDERPENDING = "pending";
+const String HISTORYORDERPROCESSING = "processing";
+const String HISTORYORDERCOMPLETED = "completed";
+const String HISTORYORDERCANCELLED = "cancelled";
+const String HISTORYORDERFAILED = "failed";
+
+const String CHECKOUTSHIPPING = "SHIPPING";
+const String CHECKOUTPAYMENT = "PAYMENT";
 const String POPULARPRODUCTS = "Popular Products";
 const String SEARCHFORPRODUCTS = "Search Products";
 const String TOTALSALES = "Total Sales";

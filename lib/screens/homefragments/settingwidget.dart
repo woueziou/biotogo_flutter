@@ -194,10 +194,9 @@ class _SettingScreenState extends State<SettingScreen> {
                               "", "", Icons.arrow_forward_ios, () {
                             Share.share(
                                 Platform.isIOS
-                                    ? "YOUR IPHONE APP LINK "
-                                    : "YOUR ANDROID APP LINK",
-                                subject:
-                                    'Get this link from developer console');
+                                    ? "Biotogo link IOS "
+                                    : "Biotogo link Android",
+                                subject: 'biotogo.tg');
                           }),
                           getListItem(
                               Icons.call_missed_outgoing,
@@ -436,7 +435,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    'Dark',
+                    'Sombre',
                     style: TextStyle(
                         fontFamily: "Header",
                         color: isDarkTheme() ? themeTextColor : themeTextColor,
@@ -455,7 +454,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    'Light',
+                    'Claire',
                     style: TextStyle(
                         fontFamily: "Header",
                         color: !isDarkTheme()

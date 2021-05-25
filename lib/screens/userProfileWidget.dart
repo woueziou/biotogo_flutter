@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:ecom/WidgetHelper/CustomIcons.dart';
 import 'package:ecom/WidgetHelper/profileInfo.dart';
-import 'package:ecom/bloc/bloc_checkout.dart';
-import 'package:ecom/emuns/checkOutType.dart';
 import 'package:ecom/utils/appTheme.dart';
 import 'package:ecom/utils/languages_local.dart';
-import 'package:ecom/utils/prefrences.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'package:flutter/material.dart';
 
 class UserProfileScreen extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile3.dart";
@@ -20,10 +14,7 @@ class UserProfileScreen extends StatelessWidget {
           direction: Axis.vertical,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-                flex: 1,
-                child: Container()
-            ),
+            Expanded(flex: 1, child: Container()),
             Expanded(
                 flex: 1,
                 child: Container(
@@ -32,46 +23,42 @@ class UserProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Navigator.of(context).pop();
                           },
                           child: Container(
                             height: 40,
                             width: 40,
-
-                            child: Icon(Icons.arrow_back,
+                            child: Icon(
+                              Icons.arrow_back,
                               color: themeAppBarItems,
-                              size: 25,),
-                          )
-                      ),
+                              size: 25,
+                            ),
+                          )),
                       Text(
                         LocalLanguageString().updateprofile,
                         style: TextStyle(
                             color: themeAppBarItems,
                             fontSize: 20.0,
-                            fontFamily: "Header"
-                        ),
+                            fontFamily: "Header"),
                       ),
-                       Container(),
+                      Container(),
                     ],
                   ),
-                )
-            ),
+                )),
             Expanded(
-              flex: 13,
-              child: Container(
-                padding: EdgeInsets.all(15),
-                child: ProfileInfo( onTap: (){
-                  Navigator.of(context).pop();
-                },),
-              )
-            )
-
+                flex: 13,
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  child: ProfileInfo(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ))
           ],
         ),
-      ) ,
+      ),
     );
   }
-
 }
-

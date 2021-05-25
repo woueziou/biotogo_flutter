@@ -19,17 +19,14 @@ import 'package:progress_indicators/progress_indicators.dart';
 class WishListScreen extends StatefulWidget {
   WishListScreen({Key key}) : super(key: key);
 
-
   @override
   _WishListScreenState createState() => _WishListScreenState();
 }
 
-class _WishListScreenState extends State<WishListScreen>   {
-
-  double boxSize=70;
+class _WishListScreenState extends State<WishListScreen> {
+  double boxSize = 70;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: themeBG,
         body: Container(
@@ -37,11 +34,7 @@ class _WishListScreenState extends State<WishListScreen>   {
             direction: Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                  )
-              ),
+              Expanded(flex: 1, child: Container()),
               Expanded(
                   flex: 1,
                   child: Container(
@@ -50,65 +43,64 @@ class _WishListScreenState extends State<WishListScreen>   {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.of(context).pop();
                             },
                             child: Container(
                               height: 40,
                               width: 40,
-
-                              child: Icon(Icons.arrow_back,
+                              child: Icon(
+                                Icons.arrow_back,
                                 color: themeAppBarItems,
-                                size: 25,),
-                            )
-                        ),
+                                size: 25,
+                              ),
+                            )),
                         Text(
                           LocalLanguageString().wishlist,
-                          style: TextStyle(color: themeAppBarItems,
+                          style: TextStyle(
+                            color: themeAppBarItems,
                             fontSize: 20.0,
                             fontFamily: "Header",
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Container(),
-
                       ],
                     ),
-                  )
-              ),
+                  )),
               Expanded(
-                flex: 13,
-                child: ListView(
-                    children: getWhishlistPref().length==0? [Container(
-                      height: 200,
-                      child: Center(
-                        child: Text(
-                          " No items marked yet ",
-                          style: TextStyle(
-                            fontFamily: "Normal",
-                            fontWeight: FontWeight.w600,
-                            fontSize: 19,
-                            color: themeTextColor,
-                          ),),
-                      ),
-                    )]:getWhishlistPref().map((id) {
-                      return favItems(id);
-                    }).toList()
-                )
-              )
-
+                  flex: 13,
+                  child: ListView(
+                      children: getWhishlistPref().length == 0
+                          ? [
+                              Container(
+                                height: 200,
+                                child: Center(
+                                  child: Text(
+                                    " Liste vide\n aucun élément ajouté ",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: "Normal",
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 19,
+                                      color: themeTextColor,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ]
+                          : getWhishlistPref().map((id) {
+                              return favItems(id);
+                            }).toList()))
             ],
           ),
-        )
-    );
-
+        ));
   }
 
   Widget favItems(int productId) {
     GetAllProducts getallproduct = getProductFromId(productId);
 
-    if(getallproduct==null)
-      return Container();
+    if (getallproduct == null) return Container();
     return Container(
       height: 110,
       padding: const EdgeInsets.all(10),
@@ -125,12 +117,12 @@ class _WishListScreenState extends State<WishListScreen>   {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            width: 120,
-              child:getallproduct.images.length>0?
-              Image.network(
-                getallproduct.images[0].src,
-                fit: BoxFit.cover,
-              )
+              width: 120,
+              child: getallproduct.images.length > 0
+                  ? Image.network(
+                      getallproduct.images[0].src,
+                      fit: BoxFit.cover,
+                    )
 //              CachedNetworkImage(
 //                imageUrl: getallproduct.images[0].src,
 //                imageBuilder: (context, imageProvider) =>
@@ -153,8 +145,10 @@ class _WishListScreenState extends State<WishListScreen>   {
 //                errorWidget: (context, url, error) =>
 //                    Center(child: Icon(Icons.filter_b_and_w),),
 //              )
-                  :Container(height: 80,width: 80,)
-          ),
+                  : Container(
+                      height: 80,
+                      width: 80,
+                    )),
           Flexible(
             child: Container(
               margin: EdgeInsets.only(left: 14),
@@ -166,15 +160,15 @@ class _WishListScreenState extends State<WishListScreen>   {
                     children: <Widget>[
                       Flexible(
                         child: Text(
-                          "${getallproduct != null ? getallproduct.title : ""}".toUpperCase(),
+                          "${getallproduct != null ? getallproduct.title : ""}"
+                              .toUpperCase(),
                           overflow: TextOverflow.fade,
                           softWrap: true,
                           style: TextStyle(
                               color: themeTextColor,
                               fontSize: 15,
                               fontFamily: "Normal",
-                              fontWeight: FontWeight.w700
-                          ),
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                       Container(
@@ -189,22 +183,20 @@ class _WishListScreenState extends State<WishListScreen>   {
                           iconSize: 20,
                         ),
                       )
-
                     ],
                   ),
                   Row(
                     children: <Widget>[
-                      Text(LocalLanguageString().price + " :",
+                      Text(
+                        LocalLanguageString().price + " :",
                         style: TextStyle(
                             color: themeTextColor,
                             fontSize: 14,
                             fontFamily: "Normal",
-                            fontWeight: FontWeight.w700
-                        ),
+                            fontWeight: FontWeight.w700),
                       ),
-
                       Text(
-                        "${getallproduct != null ? getallproduct.price+" $currencyCode" : ""}",
+                        "${getallproduct != null ? getallproduct.price + " $currencyCode" : ""}",
                         style: TextStyle(
                           fontFamily: "Normal",
                           color: themeTextColor,
@@ -212,7 +204,6 @@ class _WishListScreenState extends State<WishListScreen>   {
                           fontSize: 14,
                         ),
                       ),
-
                     ],
                   ),
                   Text(

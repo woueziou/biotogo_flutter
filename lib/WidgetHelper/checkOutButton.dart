@@ -1,3 +1,4 @@
+import 'package:ecom/utils/languages_local.dart';
 import 'package:flutter/material.dart';
 import 'package:ecom/bloc/bloc_checkout.dart';
 import 'package:ecom/bloc/bloc_home.dart';
@@ -12,38 +13,37 @@ import 'package:ecom/utils/appTheme.dart';
 import 'package:ecom/screens/splashWidget.dart';
 
 class CheckOutButton {
-
   Widget getCheckOutTab(CheckOutType checkOutType) {
-    return  Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: []..addAll(CheckOutType.values.map((type) {
-        return getButtonUI(type,type==checkOutType);
-      }).toList()),
+          return getButtonUI(type, type == checkOutType);
+        }).toList()),
     );
-
   }
 
   Widget getButtonUI(CheckOutType checkOutType, bool isSelected) {
+    final ckoutString = checkOutType.toString().split(".")[1];
+    final word = LocalLanguageString().wordValue(ckoutString);
     return Container(
-        margin: EdgeInsets.all(5),
-        width: 90,
-        child:  Padding(
-          padding: const EdgeInsets.all(2),
-          child: Center(
-            child: Text(
-              checkOutType.toString().split(".")[1],
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 15,
-                decoration: TextDecoration.none,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Normal",
-                color: isSelected?themeTextHighLightColor:themeTextColor,
-              ),
-
+      margin: EdgeInsets.all(5),
+      width: 90,
+      child: Padding(
+        padding: const EdgeInsets.all(2),
+        child: Center(
+          child: Text(
+            word,
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 15,
+              decoration: TextDecoration.none,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Normal",
+              color: isSelected ? themeTextHighLightColor : themeTextColor,
             ),
           ),
         ),
+      ),
     );
   }
 }

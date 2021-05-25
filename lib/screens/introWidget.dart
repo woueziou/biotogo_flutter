@@ -41,7 +41,7 @@ class _IntroScreenState extends State<IntroScreen> {
           fontFamily: 'RobotoMono'),
       description:
           """Ensemble consommons local, consommons Bio sur www.biotogo.tg
-Biotogo, le carrefour des produits locaux. © 2021 Bio TOGO. BeWell Concept""",
+Biotogo, le carrefour des produits locaux. \n© 2021 Bio TOGO. BeWell Concept""",
       styleDescription: TextStyle(
           color: themeTextColor,
           fontSize: 15.0,
@@ -60,6 +60,10 @@ Biotogo, le carrefour des produits locaux. © 2021 Bio TOGO. BeWell Concept""",
         child: Stack(
           children: <Widget>[
             IntroSlider(
+              nameDoneBtn: 'Continuer',
+              nameNextBtn: 'Suivant',
+              namePrevBtn: 'Précedent',
+              nameSkipBtn: 'Passer',
               slides: this.slides,
               onDonePress: this.onDonePress,
               onSkipPress: this.onSkipPress,

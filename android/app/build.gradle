@@ -49,23 +49,23 @@ android {
         }
     }
 //    keytool -exportcert -alias "applipiewoo" -storepass "applipiewoo" -keystore "/Users/applipie/EnvatoProject/WooComm/CodeFWooCommerce/android/app/keystore.jks" | openssl sha1 -binary | openssl base64
-    signingConfigs {
-        release {
-            keyAlias 'applipiewoo'
-            keyPassword 'applipiewoo'
-            storeFile file('keystore.jks')
-            storePassword 'applipiewoo'
-        }
-        debug {
-            keyAlias 'applipiewoo'
-            keyPassword 'applipiewoo'
-            storeFile file('keystore.jks')
-            storePassword 'applipiewoo'
-        }
-    }
-    configurations {
-        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
-    }
+    // signingConfigs {
+    //     release {
+    //         keyAlias 'applipiewoo'
+    //         keyPassword 'applipiewoo'
+    //         storeFile file('keystore.jks')
+    //         storePassword 'applipiewoo'
+    //     }
+    //     debug {
+    //         keyAlias 'applipiewoo'
+    //         keyPassword 'applipiewoo'
+    //         storeFile file('keystore.jks')
+    //         storePassword 'applipiewoo'
+    //     }
+    // }
+    // configurations {
+    //     all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    // }
 }
 
 rootProject.ext {
@@ -78,8 +78,8 @@ flutter {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-core:16.0.1'
-    implementation 'com.google.firebase:firebase-analytics:17.2.0'
+    implementation 'com.google.firebase:firebase-core'
+    implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'io.card:android-sdk:5.+'
 }

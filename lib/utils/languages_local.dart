@@ -11,6 +11,12 @@ class LocalLanguageString {
 //      languageCode= window.locales[1].languageCode;
     if (languageCode == null || languageCode == "") languageCode = "fr";
   }
+  String wordValue(String key) {
+    final result = _localizedValues[
+        _localizedValues.containsKey(languageCode) ? languageCode : "en"][key];
+    return result;
+  }
+
   String get price => _localizedValues[
       _localizedValues.containsKey(languageCode) ? languageCode : "en"][PRICE];
   String get popularproducts => _localizedValues[
@@ -205,6 +211,9 @@ Map<String, Map<String, String>> _localizedValues = {
   'en': {
     // English
     PRICE: PRICE,
+    CHECKOUTADDRESS: CHECKOUTADDRESS,
+    CHECKOUTSHIPPING: CHECKOUTSHIPPING,
+    CHECKOUTPAYMENT: CHECKOUTPAYMENT,
     POPULARPRODUCTS: POPULARPRODUCTS,
     SEARCHFORPRODUCTS: SEARCHFORPRODUCTS,
     TOTALSALES: TOTALSALES,
@@ -448,14 +457,26 @@ Map<String, Map<String, String>> _localizedValues = {
     PROFILESETTING: "Réglage du profil",
     GENERALSETTING: "Réglage général",
     ABOUTUS: "À propos de nous",
-    ABOUTUSSHORTDESCRIPTION:
-        "Une communauté collaborative pour tous ceux qui souhaitent développer des applications à l'aide de Flutter et Dart.",
-    CONTACTUS: "Connectez-nous",
+    ABOUTUSSHORTDESCRIPTION: """BIO TOGO\n
+UNE PLATE-FORME QUI REGROUPE TOUS LES PRODUITS POUR LES QUELS VOUS VOUS DÉPLACEZ POUR VOS COURSES.
+\n ELLE VOUS FACILITE LA TÂCHE POUR VOUS LIVREZ EN PLUS DE PRODUITS BIO BIEN SÉLECTIONNÉS CHEZ NOS FOURNISSEURS ET PARTENAIRES\n
+#BIO #NATUREL""",
+    CONTACTUS: "Contactez-nous",
+    CHECKOUTADDRESS: "Adresse",
+    CHECKOUTSHIPPING: "Livraison",
+    CHECKOUTPAYMENT: "Payement",
+    HISTORYORDERANY: "Tout",
+    HISTORYORDERPENDING: "En cours",
+    HISTORYORDERPROCESSING: "Traitement",
+    HISTORYORDERCOMPLETED: "Terminé",
+    HISTORYORDERCANCELLED: "Annulé",
+    HISTORYORDERFAILED: "Echoué",
+
     DETAILEDPRODUCT: "Produit détaillé",
     DESCRIPTION: "La description",
     SHORTDESCRIPTION: "Brève description",
     DETAILS: "Détails",
-    ADDTOCART: "Ajouter au chariot",
+    ADDTOCART: "Ajouter au panier",
     ORDERHISTORY: "Historique des commandes",
     ORDERDELIVERYTO: "Livraison de la commande à",
 
@@ -472,14 +493,14 @@ Map<String, Map<String, String>> _localizedValues = {
     COMPANY: "Compagnie",
     ADDRESS: "Adresse",
     CITY: "Ville",
-    POSTALCODE: "Etat",
-    STATE: "Code postal",
+    POSTALCODE: "Code postal",
+    STATE: "Region",
     COUNTRY: "Pays",
     PHONE: "Téléphone",
     SAVE: "Sauvegarder",
     LANGUAGE: "Langue",
     PROFILEUPDATE: "Mise à jour du profil",
-    ORDERS: "Ordre",
+    ORDERS: "Commande",
     RATEAPP: "Application de taux",
     SHARE: "Partager",
     LOGOUT: "Se déconnecter",
