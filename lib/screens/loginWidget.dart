@@ -27,7 +27,7 @@ class LoginWidget extends StatefulWidget {
 class _MyAppState extends State<LoginWidget> {
 //  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   bool isFreeShipment;
-  double amount;
+  int amount;
   String redirectTo;
   bool isLoading = false;
   @override

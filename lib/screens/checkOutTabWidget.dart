@@ -9,22 +9,19 @@ import 'package:ecom/screens/checkoutfragments/checkoutShippingWidget.dart';
 import 'package:ecom/utils/appTheme.dart';
 import 'package:ecom/utils/languages_local.dart';
 
- class CheckOutTabScreen extends StatefulWidget {
-
+class CheckOutTabScreen extends StatefulWidget {
   @override
   _CheckOutScreenState createState() => new _CheckOutScreenState();
-  }
+}
 
-class _CheckOutScreenState extends State<CheckOutTabScreen> with CheckOutButton {
+class _CheckOutScreenState extends State<CheckOutTabScreen>
+    with CheckOutButton {
   bool isFreeShipment;
   @override
   Widget build(BuildContext context) {
-    Map map = ModalRoute
-        .of(context)
-        .settings
-        .arguments as Map;
-    double amount = map['_amount'];
-    isFreeShipment = map['_freeShipment']??false;
+    Map map = ModalRoute.of(context).settings.arguments as Map;
+    int amount = map['_amount'];
+    isFreeShipment = map['_freeShipment'] ?? false;
 
     return Container(
       color: themeBG,
@@ -32,11 +29,7 @@ class _CheckOutScreenState extends State<CheckOutTabScreen> with CheckOutButton 
         direction: Axis.vertical,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Expanded(
-              flex: 1,
-              child: Container(
-              )
-          ),
+          Expanded(flex: 1, child: Container()),
           Expanded(
               flex: 1,
               child: Container(
@@ -51,12 +44,12 @@ class _CheckOutScreenState extends State<CheckOutTabScreen> with CheckOutButton 
                         child: Container(
                           height: 40,
                           width: 40,
-
-                          child: Icon(Icons.arrow_back,
+                          child: Icon(
+                            Icons.arrow_back,
                             color: themeAppBarItems,
-                            size: 25,),
-                        )
-                    ),
+                            size: 25,
+                          ),
+                        )),
                     Text(
                       LocalLanguageString().checkout,
                       style: TextStyle(
@@ -68,63 +61,52 @@ class _CheckOutScreenState extends State<CheckOutTabScreen> with CheckOutButton 
                       ),
                     ),
                     Container(),
-
                   ],
                 ),
-              )
-          ),
-          Expanded(
-              flex: 13,
-              child: body(amount)
-          )
-
+              )),
+          Expanded(flex: 13, child: body(amount))
         ],
       ),
     );
   }
 
-  Widget body(double amount){
+  Widget body(int amount) {
     return Container(
         child: Flex(
-          direction: Axis.vertical,
-          children: <Widget>[
-            Divider(),
-            Expanded(
-              flex: 1,
-              child: StreamBuilder(
-                stream: checkOutBloc.selectCheckoutStreamController.stream,
-                initialData: CheckOutType.ADDRESS,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return snapshot.data!=null? getCheckOutTab(snapshot.data):Container();
-                },
-              ),
-            ),
-            Expanded(
-                flex: 9,
-                child:  StreamBuilder(
-                  stream: checkOutBloc.selectCheckoutStreamController.stream,
-                  initialData: CheckOutType.ADDRESS,
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if( snapshot.data!=null) {
-                      if (snapshot.data == CheckOutType.ADDRESS) {
-                        return CheckOutProfileScreen();
-                      }else if(snapshot.data==CheckOutType.SHIPPING){
-                        return CheckOutShippingScreen(isFreeShipment);
-                      }else if(snapshot.data==CheckOutType.PAYMENT){
-                        return CheckOutPaymentScreen(amount);
-                      }
-                    }
-                    else
-                      return Container();
-                  },
-                )
-            ),
-
-          ],
-        )
-
-    );
+      direction: Axis.vertical,
+      children: <Widget>[
+        Divider(),
+        Expanded(
+          flex: 1,
+          child: StreamBuilder(
+            stream: checkOutBloc.selectCheckoutStreamController.stream,
+            initialData: CheckOutType.ADDRESS,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              return snapshot.data != null
+                  ? getCheckOutTab(snapshot.data)
+                  : Container();
+            },
+          ),
+        ),
+        Expanded(
+            flex: 9,
+            child: StreamBuilder(
+              stream: checkOutBloc.selectCheckoutStreamController.stream,
+              initialData: CheckOutType.ADDRESS,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.data != null) {
+                  if (snapshot.data == CheckOutType.ADDRESS) {
+                    return CheckOutProfileScreen();
+                  } else if (snapshot.data == CheckOutType.SHIPPING) {
+                    return CheckOutShippingScreen(isFreeShipment);
+                  } else if (snapshot.data == CheckOutType.PAYMENT) {
+                    return CheckOutPaymentScreen(amount);
+                  }
+                } else
+                  return Container();
+              },
+            )),
+      ],
+    ));
   }
-
 }
-

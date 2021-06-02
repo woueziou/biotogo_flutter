@@ -22,6 +22,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:ecom/models/responce/createCustomerResponceModel.dart';
 
+import 'screens/checkoutfragments/checkoutShippingWidget.dart';
+
 class WooHttpRequest {
 //-----------------------------------HEROKU SERVER-----------------------------------------------------//
 
@@ -225,13 +227,16 @@ class WooHttpRequest {
   Future putNewOrder(String payment_method, String payment_method_title) async {
     List<Line_items> lineItems = getCartProductsPref();
     CreateCustomer createCustomer = getCustomerDetailsPref();
+    // lineItems.add(new Line_items(000, variation_id, quantity))
     CreateOrder createOrder = new CreateOrder(
-        payment_method,
+        'bacs',
         payment_method_title,
         true,
         createCustomer.billing,
         createCustomer.shipping,
-        lineItems);
+        lineItems,
+        [shippingLines]);
+    debugPrint('$shippingCost');
     String basicAuth = 'Basic ' +
         base64Encode(utf8.encode('$WOOCOMM_AUTH_USER:$WOOCOMM_AUTH_PASS'));
     print(basicAuth);
